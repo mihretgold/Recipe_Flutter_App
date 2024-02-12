@@ -1,21 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:recipes_app/main.dart';
 import 'package:recipes_app/screens/home.dart';
+import 'package:recipes_app/screens/signup.dart';
+import 'package:recipes_app/services/auth.dart';
 import 'package:recipes_app/utils/class.dart';
 import 'package:recipes_app/utils/userData.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 List<String> stepsGlobal = [];
 List<String> ingGlobal = [];
 List<Nutrients> nutGlobal = [];
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    TextEditingController loginEmailController = TextEditingController();
-    TextEditingController loginPasswordController = TextEditingController();
+  State<Login> createState() => _LoginState();
+}
 
+class _LoginState extends State<Login> {
+  final AuthService _auth = AuthService();
+  TextEditingController loginEmailController = TextEditingController();
+  TextEditingController loginPasswordController = TextEditingController();
+
+  @override
+  void dispose() {
+    loginEmailController.dispose();
+    loginPasswordController.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
     var body = Center(
       child: Container(
@@ -52,8 +67,8 @@ class Login extends StatelessWidget {
                     ),
                     Center(
                       child: ElevatedButton(
-                        onPressed: () {
-                          User? user = UserData.login(loginEmailController.text,
+                        onPressed: () async {
+                          User? user = await _signIn(loginEmailController.text,
                               loginPasswordController.text);
                           print(user);
                           if (user != null) {
@@ -89,7 +104,26 @@ class Login extends StatelessWidget {
                             )),
                         child: const Text("Login"),
                       ),
-                    )
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Signup()),
+                        );
+                      },
+                      child: Text(
+                        "Don't have an account? SignUp",
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ),
                   ]),
             ),
           ),
@@ -103,7 +137,16 @@ class Login extends StatelessWidget {
     );
   }
 
-  void createUser(String name, String email, String password) {}
+  Future<User?> _signIn(String email, String password) async {
+    User? user = await _auth.signInWithEmailAndPassword(email, password);
+
+    if (user != null) {
+      print('User is successfully created');
+    } else {
+      print('Error');
+    }
+    return user;
+  }
 }
 
 class CustomTextField extends StatefulWidget {

@@ -2,20 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:recipes_app/main.dart';
 import 'package:recipes_app/screens/login.dart';
 import 'package:recipes_app/utils/class.dart';
+import 'package:recipes_app/services/auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 List<String> stepsGlobal = [];
 List<String> ingGlobal = [];
 List<Nutrients> nutGlobal = [];
 
-class Signup extends StatelessWidget {
+class Signup extends StatefulWidget {
   const Signup({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    TextEditingController signUpNameController = TextEditingController();
-    TextEditingController signUpEmailController = TextEditingController();
-    TextEditingController signUpPasswordController = TextEditingController();
+  State<Signup> createState() => _SignupState();
+}
 
+class _SignupState extends State<Signup> {
+  final AuthService _auth = AuthService();
+
+  TextEditingController signUpNameController = TextEditingController();
+  TextEditingController signUpEmailController = TextEditingController();
+  TextEditingController signUpPasswordController = TextEditingController();
+
+  @override
+  void dispose() {
+    signUpEmailController.dispose();
+    signUpNameController.dispose();
+    signUpPasswordController.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
     var body = Center(
       child: Container(
@@ -58,19 +74,35 @@ class Signup extends StatelessWidget {
                     ),
                     Center(
                       child: ElevatedButton(
-                        onPressed: () {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Recipe created successfully'),
-                              backgroundColor: Colors.green,
-                              duration: Duration(seconds: 2),
-                            ),
-                          );
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const Login(),
-                              ));
+                        onPressed: () async {
+                          User? user = await _signUp(
+                              signUpNameController.text,
+                              signUpEmailController.text,
+                              signUpPasswordController.text);
+
+                          if (user != null) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('User created successfully'),
+                                backgroundColor: Colors.green,
+                                duration: Duration(seconds: 2),
+                              ),
+                            );
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const Login(),
+                                ));
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content:
+                                    Text('User not  created! Please try again'),
+                                backgroundColor: Colors.red,
+                                duration: Duration(seconds: 2),
+                              ),
+                            );
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor:
@@ -81,7 +113,26 @@ class Signup extends StatelessWidget {
                             )),
                         child: const Text("Signup"),
                       ),
-                    )
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Login()),
+                        );
+                      },
+                      child: Text(
+                        "Already have an account? SignIn",
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ),
                   ]),
             ),
           ),
@@ -95,7 +146,16 @@ class Signup extends StatelessWidget {
     );
   }
 
-  void createUser(String name, String email, String password) {}
+  Future<User?> _signUp(String name, String email, String password) async {
+    User? user = await _auth.signUpWithEmailAndPassword(email, password);
+
+    if (user != null) {
+      print('User is successfully created');
+    } else {
+      print('Error');
+    }
+    return user;
+  }
 }
 
 class CustomTextField extends StatefulWidget {

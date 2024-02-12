@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:recipes_app/screens/bookmark.dart';
 import 'package:recipes_app/screens/create.dart';
 import 'package:recipes_app/screens/home.dart';
 import 'package:recipes_app/screens/login.dart';
+import 'package:recipes_app/services/auth.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -56,6 +58,7 @@ class CustomDrawer extends StatelessWidget {
             children: [
               IconButton(
                   onPressed: () {
+                    FirebaseAuth.instance.signOut();
                     Navigator.push(
                         context,
                         MaterialPageRoute(
