@@ -12,6 +12,7 @@ class CustomDrawer extends StatelessWidget {
       backgroundColor: Theme.of(context).primaryColor,
       child: Column(
         children: [
+          Image.asset('assets/images/food.jpg'),
           ListTile(
             title: const Text(
               "Home",

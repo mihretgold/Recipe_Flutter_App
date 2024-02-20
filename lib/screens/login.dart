@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipes_app/main.dart';
 import 'package:recipes_app/screens/home.dart';
+import 'package:recipes_app/screens/signup.dart';
 import 'package:recipes_app/utils/class.dart';
 import 'package:recipes_app/utils/userData.dart';
 
@@ -29,12 +30,28 @@ class Login extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
-                      "Login",
-                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/images/recipe.png',
+                          width: 100,
+                          height: 100,
+                        ),
+                        const SizedBox(
+                          width: 30,
+                        ),
+                        Text(
+                          "Login",
+                          style: TextStyle(
+                              fontSize: 30,
+                              color: Theme.of(context).colorScheme.primary,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
                     ),
                     const SizedBox(
-                      height: 22,
+                      height: 25,
                     ),
                     CustomTextField(
                       title: 'Email',
@@ -89,7 +106,26 @@ class Login extends StatelessWidget {
                             )),
                         child: const Text("Login"),
                       ),
-                    )
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Signup(),
+                            ));
+                      },
+                      child: Text(
+                        "Dont't have an account? SignUp",
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                      ),
+                    ),
                   ]),
             ),
           ),
@@ -130,7 +166,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           height: 4,
         ),
         TextFormField(
-          cursorColor: Theme.of(context).colorScheme.onPrimary,
+          // cursorColor: Theme.of(context).colorScheme.onPrimary,
           controller: widget.controller,
           decoration: InputDecoration(
             filled: true,

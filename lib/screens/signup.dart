@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:recipes_app/main.dart';
 import 'package:recipes_app/screens/login.dart';
 import 'package:recipes_app/utils/class.dart';
+import 'package:recipes_app/utils/userData.dart';
 
 List<String> stepsGlobal = [];
 List<String> ingGlobal = [];
@@ -30,9 +31,25 @@ class Signup extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
-                      "Sign Up",
-                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/images/recipe.png',
+                          width: 100,
+                          height: 100,
+                        ),
+                        const SizedBox(
+                          width: 30,
+                        ),
+                        Text(
+                          "Sign Up",
+                          style: TextStyle(
+                              fontSize: 30,
+                              color: Theme.of(context).colorScheme.primary,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
                     ),
                     const SizedBox(
                       height: 22,
@@ -59,18 +76,34 @@ class Signup extends StatelessWidget {
                     Center(
                       child: ElevatedButton(
                         onPressed: () {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Recipe created successfully'),
-                              backgroundColor: Colors.green,
-                              duration: Duration(seconds: 2),
-                            ),
-                          );
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const Login(),
-                              ));
+                          User? user = UserData.signup(
+                              signUpNameController.text,
+                              signUpEmailController.text,
+                              signUpPasswordController.text);
+
+                          if (user != null) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Signed Up successfully'),
+                                backgroundColor: Colors.green,
+                                duration: Duration(seconds: 2),
+                              ),
+                            );
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const Login(),
+                                ));
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                    'Signed Up unsuccessfull! Please Try again'),
+                                backgroundColor: Colors.red,
+                                duration: Duration(seconds: 2),
+                              ),
+                            );
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor:
@@ -81,7 +114,26 @@ class Signup extends StatelessWidget {
                             )),
                         child: const Text("Signup"),
                       ),
-                    )
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Login(),
+                            ));
+                      },
+                      child: Text(
+                        "Already have an account? SignIn",
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                      ),
+                    ),
                   ]),
             ),
           ),
@@ -122,7 +174,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           height: 4,
         ),
         TextFormField(
-          cursorColor: Theme.of(context).colorScheme.onPrimary,
+          // cursorColor: Theme.of(context).colorScheme.onPrimary,
           controller: widget.controller,
           decoration: InputDecoration(
             filled: true,

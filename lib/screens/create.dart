@@ -193,7 +193,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           height: 4,
         ),
         TextFormField(
-          cursorColor: Theme.of(context).colorScheme.onPrimary,
+          // cursorColor: Theme.of(context).colorScheme.onPrimary,
           controller: widget.controller,
           decoration: InputDecoration(
             filled: true,
