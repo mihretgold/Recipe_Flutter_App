@@ -3,6 +3,7 @@ import 'package:recipes_app/utils/class.dart';
 import 'package:recipes_app/utils/data.dart';
 import 'package:recipes_app/utils/widgets.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart'; // Import the youtube_player_flutter package
 
 class DetailsPage extends StatefulWidget {
   final Recipe recipe;
@@ -17,10 +18,34 @@ class _DetailsPageState extends State<DetailsPage> {
 
   String text = "Hi";
 
+  // Initialize YoutubePlayerController with a YouTube URL (replace with your recipe video URL)
+  late YoutubePlayerController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize YouTube player with the video URL (replace this with your actual video URL)
+    _controller = YoutubePlayerController(
+      initialVideoId:
+          YoutubePlayer.convertUrlToId(widget.recipe.videoUrl) ?? '',
+      flags: YoutubePlayerFlags(
+        autoPlay: false,
+        mute: false,
+      ),
+    );
+  }
+
   speak(text) async {
     await flutterTts.setLanguage("en-US");
     await flutterTts.setPitch(1);
     await flutterTts.speak(text);
+  }
+
+  @override
+  void dispose() {
+    // Dispose of the controller when done
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -88,6 +113,16 @@ class _DetailsPageState extends State<DetailsPage> {
                 ),
                 const Divider(
                     color: Colors.white, endIndent: 40.0, indent: 40.0),
+
+                // Add YouTube video player here
+                YoutubePlayer(
+                  controller: _controller,
+                  showVideoProgressIndicator: true,
+                ),
+
+                const Divider(
+                    color: Colors.white, endIndent: 40.0, indent: 40.0),
+
                 Row(
                   children: [
                     const SizedBox(
@@ -123,6 +158,9 @@ class _DetailsPageState extends State<DetailsPage> {
     );
   }
 }
+
+// The RecipeSteps, IngredientsWidget, and NutritionWidget classes remain the same
+
 
 class RecipeSteps extends StatelessWidget {
   final List<String> steps;
