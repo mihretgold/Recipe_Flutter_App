@@ -9,7 +9,7 @@ class Data {
         id: '1',
         title: 'Mo:Mo',
         imageUrl:
-            'https://images.unsplash.com/photo-1496116218417-1a781b1c416c?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
+            'https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bW9tbyUyMGR1bXBsaW5nfGVufDB8fDB8fHwy',
         nutrients: [
           Nutrients(name: 'Calories', weight: '200', percent: 0.7),
           Nutrients(name: 'Protein', weight: '10gm', percent: 0.5),
@@ -57,7 +57,7 @@ class Data {
         id: '3',
         title: 'Spaghetti',
         imageUrl:
-            'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80',
+            'https://images.unsplash.com/photo-1713561058969-793049b01712?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8c3BhZ2hldHRpfGVufDB8fDB8fHwy',
         nutrients: [
           Nutrients(name: 'Calories', weight: '100', percent: 0.2),
           Nutrients(name: 'Protein', weight: '10gm', percent: 0.7),
@@ -83,7 +83,7 @@ class Data {
         title: 'Pizza',
         videoUrl: 'https://www.youtube.com/watch?v=1a781b1c416c',
         imageUrl:
-            'https://images.unsplash.com/photo-1506354666786-959d6d497f1a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80',
+            'https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         nutrients: [
           Nutrients(name: 'Calories', weight: '200', percent: 0.7),
           Nutrients(name: 'Protein', weight: '10gm', percent: 0.5),
