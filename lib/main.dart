@@ -12,16 +12,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // debugShowCheckedModeBanner: false,
       title: 'Recipes App',
       theme: ThemeData(
-        primaryColor: const Color.fromARGB(255, 32, 28, 56),
+        primaryColor: const Color.fromARGB(255, 0, 0, 139), // Darker blue
         colorScheme: ColorScheme.fromSwatch(
-          primarySwatch:
-              Colors.blue, // Adjust this to your desired primary color
-          accentColor: Colors.lightBlue, // This is now the secondary color
+          primarySwatch: Colors.blue, // Keep the swatch
+          accentColor: const Color.fromARGB(255, 0, 0, 205), // Darker blue for accent
         ),
-        // useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
       home: const SplashScreen(),
