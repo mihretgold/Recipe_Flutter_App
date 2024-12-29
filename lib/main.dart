@@ -15,12 +15,11 @@ class MyApp extends StatelessWidget {
       // debugShowCheckedModeBanner: false,
       title: 'Recipes App',
       theme: ThemeData(
-        primaryColor: const Color(0xff263341),
+        primaryColor: const Color.fromARGB(255, 32, 28, 56),
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch:
-              Colors.green, // Adjust this to your desired primary color
-          accentColor:
-              const Color(0xff8DB646), // This is now the secondary color
+              Colors.blue, // Adjust this to your desired primary color
+          accentColor: Colors.lightBlue, // This is now the secondary color
         ),
         // useMaterial3: true,
       ),

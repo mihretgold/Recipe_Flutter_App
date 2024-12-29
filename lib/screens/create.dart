@@ -107,7 +107,7 @@ class CreatePage extends StatelessWidget {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             content: Text('Recipe created successfully'),
-                            backgroundColor: Colors.green,
+                            backgroundColor: Colors.blue,
                             duration: Duration(seconds: 2),
                           ),
                         );
@@ -163,6 +163,7 @@ class CreatePage extends StatelessWidget {
       ingredients: ingredients,
       nutrients: nutrients,
       createdBy: UserData.CurrentUser,
+      videoUrl: 'https://www.youtube.com/watch?v=1a781b1c416c',
     );
     // Data.recipes.add(recipe);
     Data.addRecipie(recipe);

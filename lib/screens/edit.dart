@@ -175,6 +175,7 @@ class EditPage extends StatelessWidget {
       ingredients: ingredients,
       nutrients: nutrients,
       createdBy: UserData.CurrentUser,
+      videoUrl: 'https://www.youtube.com/watch?v=1a781b1c416c',
     );
     // Data.recipes.add(recipe);
     Data.editRecipe(id, recipe);

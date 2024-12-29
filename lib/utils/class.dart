@@ -11,6 +11,7 @@ class Recipe {
   List<String> ingredients;
   List<Nutrients> nutrients;
   String createdBy;
+  String videoUrl;
   bool isBookmarked;
   Recipe(
       {required this.id,
@@ -18,6 +19,7 @@ class Recipe {
       required this.imageUrl,
       required this.steps,
       required this.ingredients,
+      required this.videoUrl,
       required this.nutrients,
       required this.createdBy,
       this.isBookmarked = false,

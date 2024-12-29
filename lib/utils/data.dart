@@ -15,6 +15,7 @@ class Data {
           Nutrients(name: 'Protein', weight: '10gm', percent: 0.5),
           Nutrients(name: 'Carb', weight: '50gm', percent: 0.9),
         ],
+        videoUrl: 'https://www.youtube.com/watch?v=1a781b1c416c',
         steps: [
           'Gather the ingredients.',
           'Pull a double shot of espresso into a cappuccino cup.',
@@ -38,6 +39,7 @@ class Data {
           Nutrients(name: 'Protein', weight: '10gm', percent: 0.5),
           Nutrients(name: 'Carb', weight: '50gm', percent: 0.9),
         ],
+        videoUrl: 'https://www.youtube.com/watch?v=1a781b1c416c',
         steps: [
           'Gather the ingredients.',
           'Pull a double shot of espresso into a cappuccino cup.',
@@ -62,6 +64,7 @@ class Data {
           Nutrients(name: 'Carb', weight: '50gm', percent: 0.6),
           Nutrients(name: 'Fat', weight: '10gm', percent: 0.3),
         ],
+        videoUrl: 'https://www.youtube.com/watch?v=1a781b1c416c',
         steps: [
           'Gather the ingredients.',
           'Pull a double shot of espresso into a cappuccino cup.',
@@ -78,6 +81,7 @@ class Data {
     Recipe(
         id: '4',
         title: 'Pizza',
+        videoUrl: 'https://www.youtube.com/watch?v=1a781b1c416c',
         imageUrl:
             'https://images.unsplash.com/photo-1506354666786-959d6d497f1a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80',
         nutrients: [
