@@ -15,7 +15,7 @@ class Data {
           Nutrients(name: 'Protein', weight: '10gm', percent: 0.5),
           Nutrients(name: 'Carb', weight: '50gm', percent: 0.9),
         ],
-        videoUrl: 'https://www.youtube.com/watch?v=1a781b1c416c',
+        videoUrl: 'https://www.youtube.com/watch?v=ZuQu12vMQZM&pp=ygUWZXNwZXJlc3NvIG1ha2luZyBzdGVwIA%3D%3D',
         steps: [
           'Gather the ingredients.',
           'Pull a double shot of espresso into a cappuccino cup.',
